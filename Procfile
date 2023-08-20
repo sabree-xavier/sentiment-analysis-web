@@ -1,0 +1,1 @@
+web: gunicorn sentiment_review_project.wsgi
