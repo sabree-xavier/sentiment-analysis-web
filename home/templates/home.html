@@ -1,0 +1,153 @@
+<!DOCTYPE html >
+{% load static %}
+<html lang="en"> 
+    <head> 
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <link rel="stylesheet" type="text/css" href='{% static "css/styles.css" %}'> 
+        <!-- <link rel="stylesheet" type="js" href='{% static "js/drawer.js" %}'>  -->
+        <title>Sentiment Review Converter</title> 
+        <script>
+            // JavaScript to toggle the drawer
+            const toggleButton = document.getElementById('toggleDrawer');
+            const drawer = document.getElementById('drawer');
+            
+            toggleButton.addEventListener('click', () => {
+                drawer.classList.toggle('open');
+            });
+        </script>
+    </head> 
+    <body> 
+        <!-- NAV BAR START --> 
+        <header> 
+            <a href="/"><h2>Sentiment Analysis</h1> </a> 
+                <nav> 
+                    <ul class="nav-links"> 
+                        <li><a href="https://github.com/sabree-xavier" target="_blank">Github</a></li> 
+                        <li><a href="https://www.figma.com/@sabreexavier" target="_blank">Figma</a></li> 
+                        <li><a href="https://www.linkedin.com/in/xavier-sabree-569a7b204/" target="_blank">LinkedIn</a></li> 
+                        <li><a href="mailto:sabreexavier@gmail.com">Contact</a></li> 
+                    </ul> 
+                </nav> 
+                <a class="cta" href="https://drive.google.com/file/d/11QSfvDKBShSKNTdGjnEBYr7Hpj0bVbC0/view?usp=sharing" target="_blank">
+                        <button>Resume</button>
+                    </a> 
+        </header> 
+        <!-- NAV BAR END --> 
+
+        
+        <!-- SUBMIT REVIEW START -->
+<div class="content"> 
+    <div class="row">
+        <div class="expanded">
+            <form id="review-form" method="post" action="{% url 'process_review' %}">
+                {% csrf_token %}
+                <input type="text" name="review" id="review-input" placeholder="Enter review to get a sentiment value..." class="text-field" > 
+            </form>
+        </div> 
+        <button class="outlined-button" id="random-review-button" type="button">Random Review</button>
+    </div> 
+</div>
+<!-- SUBMIT REVIEW END -->
+
+<script>
+    const randomReviewButton = document.getElementById('random-review-button');
+    const reviewInput = document.getElementById('review-input');
+
+    randomReviewButton.addEventListener('click', () => {
+        reviewInput.value = "random";
+        document.getElementById('review-form').submit();
+    });
+</script>
+
+
+        <!-- DISPLAY REVIEWS START -->
+        {% for review in reviews reversed %}
+        {% if review.user == user %}
+        <div class="container"> 
+            <div class="container-header">
+                <div class="date">{{ review.timestamp_field }}</div>
+            </div>
+            <div class="review-text"> 
+                <p>{{ review.review }}</p> 
+            </div> 
+            <hr> 
+            <div class="container-footer">
+                <div class="star-ratings">
+                    Star Ratings:
+                    <div class="stars-container">
+                        {% if review.sentiment_value <= 1 %}
+                        <img src='{% static "images/icons/filled-star.png" %}' alt="Icon A">
+                        <img src='{% static "images/icons/outlined-star.png" %}' alt="Icon A">
+                        <img src='{% static "images/icons/outlined-star.png" %}' alt="Icon A">
+                        <img src='{% static "images/icons/outlined-star.png" %}' alt="Icon A">
+                        <img src='{% static "images/icons/outlined-star.png" %}' alt="Icon A">
+                        {% elif review.sentiment_value <= 2 %}
+                        <img src='{% static "images/icons/filled-star.png" %}' alt="Icon A">
+                        <img src='{% static "images/icons/filled-star.png" %}' alt="Icon A">
+                        <img src='{% static "images/icons/outlined-star.png" %}' alt="Icon A">
+                        <img src='{% static "images/icons/outlined-star.png" %}' alt="Icon A">
+                        <img src='{% static "images/icons/outlined-star.png" %}' alt="Icon A">
+                        {% elif review.sentiment_value <= 3 %}
+                        <img src='{% static "images/icons/filled-star.png" %}' alt="Icon A">
+                        <img src='{% static "images/icons/filled-star.png" %}' alt="Icon A">
+                        <img src='{% static "images/icons/filled-star.png" %}' alt="Icon A">
+                        <img src='{% static "images/icons/outlined-star.png" %}' alt="Icon A">
+                        <img src='{% static "images/icons/outlined-star.png" %}' alt="Icon A">
+                        {% elif review.sentiment_value <= 4 %}
+                        <img src='{% static "images/icons/filled-star.png" %}' alt="Icon A">
+                        <img src='{% static "images/icons/filled-star.png" %}' alt="Icon A">
+                        <img src='{% static "images/icons/filled-star.png" %}' alt="Icon A">
+                        <img src='{% static "images/icons/filled-star.png" %}' alt="Icon A">
+                        <img src='{% static "images/icons/outlined-star.png" %}' alt="Icon A">
+                        {% elif review.sentiment_value <= 5 %}
+                        <img src='{% static "images/icons/filled-star.png" %}' alt="Icon A">
+                        <img src='{% static "images/icons/filled-star.png" %}' alt="Icon A">
+                        <img src='{% static "images/icons/filled-star.png" %}' alt="Icon A">
+                        <img src='{% static "images/icons/filled-star.png" %}' alt="Icon A">
+                        <img src='{% static "images/icons/filled-star.png" %}' alt="Icon A">
+                        {% endif %}
+                    </div>
+                    
+                </div>
+            </div>
+             
+    </div> 
+    {% endif %}
+    {% endfor %}
+    <!-- DISPLAY REVIEWS END -->
+        
+        <!-- FOOTER START --> 
+        <footer class="footer"> 
+            <div class="footer-content"> 
+                <div class="icons"> 
+                    <a href="https://github.com/sabree-xavier" target="_blank">
+                        <div class="icon-container"> 
+                            <div class="circle"> 
+                                <img src='{% static "images/icons/github.svg" %}' alt="Icon A"> 
+                            </div> 
+                        </div>
+                    </a>
+                    <a href="https://www.figma.com/@sabreexavier" target="_blank">
+                        <div class="icon-container"> 
+                            <div div class="circle"> 
+                                <img src='{% static "images/icons/figma.svg" %}' alt="Icon B"> 
+                            </div> 
+                        </div> 
+                    </a>
+                   <a href="mailto:sabreexavier@gmail.com" target="_blank">
+                    <div class="icon-container"> 
+                        <div div class="circle"> 
+                            <img src='{% static "images/icons/email.svg" %}' alt="Icon C"> 
+                        </div> 
+                    </div> 
+                   </a>
+                    
+                </div> 
+                <p>Designed & Developed by</p> 
+                <a href="https://drive.google.com/file/d/11QSfvDKBShSKNTdGjnEBYr7Hpj0bVbC0/view?usp=sharing" target="_blank" class="text-link">Xavier Sabree</a> 
+            </div> 
+        </footer> 
+        <!-- FOOTER END --> 
+    </body> 
+    </html>
