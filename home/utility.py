@@ -1,7 +1,7 @@
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import openai
 from django.http import JsonResponse
-import torch
+from torch import argmax
 import random
 import string
 
@@ -10,7 +10,7 @@ def calculateSentimentValue(review):
     model = AutoModelForSequenceClassification.from_pretrained('nlptown/bert-base-multilingual-uncased-sentiment')
     tokens = tokenizer.encode(review, return_tensors='pt')
     result = model(tokens)
-    return int(torch.argmax(result.logits))+1
+    return int(argmax(result.logits))+1
 
 
 def get_client_ip(request):
@@ -23,10 +23,10 @@ def get_client_ip(request):
 
 def createRandomReview():
     # Setting up OpenAI API key
-    openai.api_key = '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'
+    openai.api_key = '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'
 
     # Generate a random review using ChatGPT
-    prompt = "Create one individual sentence that has a neutral, positive, or negative tone."
+    prompt = "Create a fictional review for a product. The review can be neutral, positive, or negative. Mainly create neutral and negative reviews. Please provide only one review and put quotes around the review. "
     response = openai.Completion.create(
         engine="text-davinci-003",  
         prompt=prompt,
