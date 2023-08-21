@@ -39,7 +39,6 @@ def home_view(request):
     context = {
         'reviews': reviews,
         # 'user' : user_ip,
-        'resume': ResumeModel.objects.all(),
         'current_page': 0
     }
 

@@ -63,7 +63,6 @@
 
         <!-- DISPLAY REVIEWS START -->
         {% for review in reviews reversed %}
-        <!-- {% if review.user == user %} -->
         <div class="container"> 
             <div class="container-header">
                 <div class="date">{{ review.timestamp_field }}</div>
@@ -113,7 +112,6 @@
             </div>
              
     </div> 
-    <!-- {% endif %} -->
     {% endfor %}
     <!-- DISPLAY REVIEWS END -->
         
