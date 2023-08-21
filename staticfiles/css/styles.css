@@ -1,0 +1,298 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600 &display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+body {
+    background-color: #E8E8E8;
+}
+
+li,
+a,
+button {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 16;
+    color: #EDF0F1;
+    text-decoration: none;
+}
+
+body,
+header,
+h2 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 16;
+    color: #EDF0F1;
+    text-decoration: none;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 3%;
+    background-color: #24252A;
+}
+
+.logo {
+    cursor: pointer;
+}
+
+.nav-links {
+    list-style: none;
+}
+
+.nav-links li {
+    display: inline-block;
+    padding: 0 20px;
+}
+
+.nav-links li a {
+    transition: all 0.3s ease 0s;
+}
+
+.nav-links li a:hover {
+    color: #0088A9;
+}
+
+button {
+    padding: 9px 25px;
+    background-color: rgba(0, 136, 169, 1);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+button:hover {
+    background-color: rgba(0, 136, 169, 0.8);
+}
+
+/* Styles for mobile drawer */
+.drawer {
+    position: fixed;
+    top: 0;
+    left: -250px; /* Start offscreen */
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    transition: left 0.3s ease-in-out;
+    z-index: 1000;
+}
+.open {
+    left: 0;
+}
+.drawer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.drawer li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 15px 20px;
+}
+
+/* Toggle button styles */
+.toggle-btn {
+    display: none; /* Hide on desktop */
+}
+
+/* Styles for desktop navigation */
+@media only screen and (min-width: 851px) {
+    .drawer {
+        display: none; /* Hide drawer on desktop */
+    }
+    .toggle-btn {
+        display: block; /* Show toggle button on desktop */
+    }
+}
+
+/* CONTENT STYLING*/
+.content{
+   padding: 12px 12px 0px 12px
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Make sure the content fills at least the viewport height */
+    margin: 0;
+}
+
+.content {
+    /* THIS IS MAKING IT FILL ALL SPACE AND LOOK WEIRD */
+    flex: 1;
+}
+
+.row {
+    display: flex;
+}
+
+.expanded {
+    flex: 1;
+}
+
+.text-field {
+    width: 100%;
+    height: 60px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.outlined-button {
+    width: 14%;
+    height: 60px;
+    margin-left: 10px;
+    padding: 8px 16px;
+    border: 1px solid #0088A9;
+    border-radius: 4px;
+    background-color: transparent;
+    color: #0088A9;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.outlined-button:hover {
+    background-color: #0088A9;
+    color: #fff;
+}
+
+/* REVIEW CARD */
+.container {
+    background-color: #fff;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.container-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 12px 8px;
+    font-size: 14px;
+    color: #555;
+}
+
+.date {
+    margin-left: auto;
+}
+
+.review-text {
+    padding: 0 12px 12px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+}
+
+hr {
+    margin: 12px 0;
+    border: none;
+    border-top: 1px solid #ccc;
+}
+
+.container-footer {
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #555;
+}
+
+.star-ratings {
+    display: flex;
+    align-items: center;
+}
+
+.star-icon {
+    color: #ff9800;
+    margin-left: 5px;
+}
+
+.stars-container {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+    height: 1.8em; /* Adjust this value as needed */
+}
+
+.stars-container img,
+.stars-container span {
+    height: 100%; /* Set the height to 100% to match the container */
+    width: auto; /* Maintain aspect ratio */
+}
+
+/* FOOTER STYLING */
+.footer {
+    background-color: #24252A;
+    color: white;
+    text-align: center;
+    padding: 50px 0;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.icon-container {
+    padding: 4px;
+    margin: 0 8px;
+}
+
+.circle {
+    width: 40px; /* Set the width of the circle (including padding) */
+    height: 40px; /* Set the height of the circle (including padding) */
+    background-color: white;
+    border-radius: 50%; /* Create a circular shape */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle img {
+    width: 24px; /* Set the width of the image */
+    height: 24px; /* Set the height of the image */
+}
+
+
+p {
+    margin: 10px 0;
+}
+
+.text-link {
+    text-decoration: underline;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.text-link:hover {
+    color: #ccc;
+}
+
+/* FOOTER STYLING */
+.icon-container:hover{
+    cursor: pointer;
+}
