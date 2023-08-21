@@ -13,12 +13,12 @@ from datetime import datetime, timedelta
 from pytz import timezone
 
 def home_view(request):
-    user_ip = get_client_ip(request)
+    # user_ip = get_client_ip(request)
     tz = timezone('EST')
 
-    if not request.user.is_authenticated:
-        user, created = get_user_model().objects.get_or_create(username=user_ip)
-        login(request, user)
+    # if not request.user.is_authenticated:
+    #     user, created = get_user_model().objects.get_or_create(username=user_ip)
+    #     login(request, user)
 
     if request.method == 'POST':
         review_text = request.POST.get('review', '')
@@ -30,7 +30,7 @@ def home_view(request):
             review_text = "\"" + review_text + "\""
         sentiment_value = calculateSentimentValue(review_text)
         
-        review = ReviewModel(review=review_text, user=str(user_ip),timestamp_field=datetime.now(tz) - timedelta(hours=4), sentiment_value=sentiment_value)
+        review = ReviewModel(review=review_text, timestamp_field=datetime.now(tz) - timedelta(hours=4), sentiment_value=sentiment_value)
         if(review_text != ""):
             review.save()
 
@@ -38,7 +38,7 @@ def home_view(request):
 
     context = {
         'reviews': reviews,
-        'user' : user_ip,
+        # 'user' : user_ip,
         'resume': ResumeModel.objects.all(),
         'current_page': 0
     }

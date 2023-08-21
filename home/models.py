@@ -9,7 +9,7 @@ class ReviewModel(models.Model):
     review = models.CharField(max_length=1000)
     timestamp_field = models.DateTimeField()
     sentiment_value = models.IntegerField()
-    user = models.CharField(max_length=50)
+    # user = models.CharField(max_length=50)
     
     def __str__(self):
         return self.review
