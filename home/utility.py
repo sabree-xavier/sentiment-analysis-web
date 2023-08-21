@@ -1,9 +1,6 @@
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import openai
-from django.http import JsonResponse
 from torch import argmax
-import random
-import string
 
 def calculateSentimentValue(review):
     tokenizer = AutoTokenizer.from_pretrained('nlptown/bert-base-multilingual-uncased-sentiment')
