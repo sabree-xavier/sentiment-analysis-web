@@ -1,3 +1,6 @@
+# torch is what is giving the build error: to continue to get 
+# sentiment values I need to use a different hosting other than
+# heroku like microsoft azure or aws
 torch==2.0.1
 Django==4.1.7
 django-heroku==0.3.1
