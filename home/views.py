@@ -24,8 +24,7 @@ def home_view(request):
         review_text = request.POST.get('review', '')
 
         if review_text == "random":
-            review_text = "random review delete in a little"
-            # review_text = createRandomReview() 
+            review_text = createRandomReview() 
             str(review_text).replace('\"', "")
         else:
             review_text = "\"" + review_text + "\""
