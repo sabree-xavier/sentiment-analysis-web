@@ -20,7 +20,7 @@ def get_client_ip(request):
 
 def createRandomReview():
     # Setting up OpenAI API key
-    # openai.api_key = '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' 
+    openai.api_key = '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' 
 
     # Generate a random review using ChatGPT
     prompt = "Create a fictional review for a product. The review can be neutral, positive, or negative. Mainly create neutral and negative reviews. Please provide only one review and put quotes around the review. "
